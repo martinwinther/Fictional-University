@@ -40,12 +40,16 @@
               'type' => 'numeric'
             ),
             array(
-              'key' => 'related_programs',
+              'key' => 'related_program',
               'compare' => 'LIKE',
               'value' => '"' . get_the_ID() . '"'                  
             )
           )                         
         ));
+        
+        if($homePageEvents->have_posts()) {
+        echo '<hr class="section-break">';	
+        echo '<h2 class="headline headline--medium">Upcoming ' . get_the_title() . ' Events</h2>';
 
         while($homePageEvents->have_posts()) {
           $homePageEvents->the_post();
@@ -69,6 +73,7 @@
               echo wp_trim_words(get_the_content(), 18);
             } ?> <a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p> 
         </div>
+        
       </div>
 
         <?php }
@@ -77,7 +82,7 @@
     </div>
 
     
-  <?php }
+  <?php }}
 
   get_footer();
 
